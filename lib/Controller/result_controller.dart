@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-import 'bmi_controller.dart';
 
 class ResultController extends GetxController {
 

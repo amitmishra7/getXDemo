@@ -9,7 +9,31 @@ class HomePage extends StatelessWidget {
     final BMIController bmiController = Get.put(BMIController());
 
     return Scaffold(
-      appBar: AppBar(title: Text('getxdemo')),
+      appBar: AppBar(
+        title: const Text('Getxdemo'),
+        actions: [
+          const Align(
+            child: Text('DarkMode'),
+            alignment: Alignment.center,
+          ),
+          Obx(
+            () => Switch(
+              value: bmiController.switchValue.value,
+              onChanged: (value) {
+                if (value) {
+                  Get.changeTheme(
+                      ThemeData.from(colorScheme: const ColorScheme.dark()));
+                } else {
+                  Get.changeTheme(ThemeData.light());
+                  // Get.changeTheme(
+                  //     ThemeData.from(colorScheme: const ColorScheme.light()));
+                }
+                bmiController.switchValue.value = value;
+              },
+            ),
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,62 +55,60 @@ class HomePage extends StatelessWidget {
 
   ElevatedButton _moreInfoButton() {
     return ElevatedButton(
-              onPressed: () => Get.toNamed('/result'),
-              child: const Text('More Info'));
+        onPressed: () => Get.toNamed('/result'),
+        child: const Text('More Info'));
   }
 
   ElevatedButton _getBMIButton(BMIController bmiController) {
     return ElevatedButton(
-              onPressed: () => bmiController.getBMI(),
-              child: const Text('Get BMI'));
+        onPressed: () => bmiController.getBMI(), child: const Text('Get BMI'));
   }
 
   Padding _heightInput(BMIController bmiController) {
     return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: bmiController.heightTextController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue))),
-            ),
-          );
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: bmiController.heightTextController,
+        decoration: const InputDecoration(
+            border:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+      ),
+    );
   }
 
   Text _enterHeightText() {
     return const Text(
-            'Enter your height in M:',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          );
+      'Enter your height in M:',
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    );
   }
 
   Padding _weightInput(BMIController bmiController) {
     return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: bmiController.weightTextController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue))),
-            ),
-          );
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: bmiController.weightTextController,
+        decoration: const InputDecoration(
+            border:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+      ),
+    );
   }
 
   Text _enterWeightText() {
     return const Text(
-            'Enter your weight in Kg:',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          );
+      'Enter your weight in Kg:',
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    );
   }
 
   Obx _bmiValue(BMIController bmiController) {
     return Obx(() => Text(bmiController.bmiValue.value.toStringAsFixed(2),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 28)));
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28)));
   }
 
   Text _bmiText() {
     return const Text('BMI',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20));
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20));
   }
 }

@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class BMIController extends GetxController {
   RxDouble bmiValue = 0.0.obs;
+  RxBool switchValue = false.obs;
   late TextEditingController weightTextController;
   late TextEditingController heightTextController;
 
