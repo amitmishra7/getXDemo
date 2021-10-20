@@ -65,8 +65,8 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: bmiController.weightTextController,
-              decoration: InputDecoration(
-                  border: const OutlineInputBorder(
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.blue))),
             ),
           );
